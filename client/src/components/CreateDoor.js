@@ -20,10 +20,9 @@ export function CreateDoor() {
       })
       .then((data) => {
         setTypes(data);
-        setSelectedType(data[0].id); // выбираем первый тип по умолчанию
+        setSelectedType(data[0].id);
       })
       .catch((error) => {
-        // обработка ошибки
       });
   }, []);
 
@@ -43,16 +42,6 @@ export function CreateDoor() {
       method: 'POST',
       body: formData,
     })
-      .then((response) => {
-        if (response.ok) {
-          // успешный ответ от сервера
-        } else {
-          // обработка ошибки
-        }
-      })
-      .catch((error) => {
-        // обработка ошибки
-      });
   };
 
   const handleAddInfo = () => {

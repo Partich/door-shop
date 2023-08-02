@@ -8,6 +8,7 @@ import { RegistrationPage } from "./pages/RegistarationPage";
 import { CartPage } from "./pages/CartPage";
 import { DoorPage } from "./components/DoorPage";
 import { CreateDoor } from "./components/CreateDoor";
+import { CreateType } from "./components/CreateType";
 
 export const useRouts = (isAuth) => {
 
@@ -22,7 +23,8 @@ export const useRouts = (isAuth) => {
         <Route path="catalog" element={<Catalog />} />
         <Route path="door/:id" element={<DoorWithId />} />
         <Route path="cart" element={<CartPage />} />
-        <Route path="create" element={<CreateDoor />} />
+        <Route path="createDoor" element={<CreateDoor />} />
+        <Route path="createType" element={<CreateType />} />
         <Route path="*" element={<Error />} />
       </Routes>
     );

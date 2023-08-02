@@ -3,6 +3,7 @@ const { Type } = modeles
 
 class TypeController {
     async create(req, res) {
+        console.log(req.body)
         const {name} = req.body
         const type = await Type.create({name})
         return res.json(type)

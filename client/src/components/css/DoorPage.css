@@ -1,0 +1,46 @@
+.door-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .door-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  
+  .door-details-container {
+    flex: 1;
+    margin-left: 50px;
+  }
+  
+  .door-name {
+    font-size: 36px;
+    margin-bottom: 0;
+  }
+  
+  .door-info {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+  }
+  
+  .door-info div {
+    margin-right: 20px;
+  }
+  
+  .door-info-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .door-info-item {
+    margin-bottom: 20px;
+  }
+  
+  .door-info-item h4 {
+    margin-bottom: 5px;
+  }

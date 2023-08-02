@@ -1,0 +1,13 @@
+.authBlock{
+    max-width: 400px;
+    margin: auto;
+    margin-top: 200px;
+    padding: 10px;
+    text-align: center;
+}
+
+.authBlock form{
+    display: flex;
+    flex-direction: column;
+}
+

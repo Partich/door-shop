@@ -7,14 +7,7 @@ export function CreateType() {
   const [type, setType] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const data = await request("/type", "POST", { name: type });
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
+    await request("/type", "POST", { name: type });
   };
 
   return (

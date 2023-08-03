@@ -1,51 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button, Col, Row } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { Form, Button, Col, Row } from "react-bootstrap";
+import { useHttp } from "../hooks/http.hook";
 
 export function CreateDoor() {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [img, setImg] = useState(null);
-  const [info, setInfo] = useState([{ title: '', description: '' }]);
+  const [info, setInfo] = useState([{ title: "", description: "" }]);
   const [types, setTypes] = useState([]);
-  const [selectedType, setSelectedType] = useState(null);
+  const [selectedType, setSelectedType] = useState("");
+  const { loading, request } = useHttp();
 
   useEffect(() => {
-    fetch('/type')
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Failed to fetch types');
-        }
-      })
-      .then((data) => {
-        setTypes(data);
-        setSelectedType(data[0].id);
-      })
-      .catch((error) => {
-      });
-  }, []);
+    request("/type").then((data) => {
+      setTypes(data);
+      setSelectedType(data[0].id);
+    });
+  }, [request]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append('name', name);
-    formData.append('price', price);
-    formData.append('typeId', selectedType);
+    formData.append("name", name);
+    formData.append("price", price);
+    formData.append("typeId", selectedType);
     if (img) {
-      formData.append('img', img);
+      formData.append("img", img);
     }
-    formData.append('info', JSON.stringify(info));
+    formData.append("info", JSON.stringify(info));
 
-    fetch('/door', {
-      method: 'POST',
+    fetch("/door", {
+      method: "POST",
       body: formData,
-    })
+    });
   };
 
   const handleAddInfo = () => {
-    setInfo([...info, { title: '', description: '' }]);
+    setInfo([...info, { title: "", description: "" }]);
   };
 
   const handleInfoChange = (event, index, field) => {
@@ -88,8 +80,20 @@ export function CreateDoor() {
         <Form.Label>Info:</Form.Label>
         {info.map((item, index) => (
           <div key={index} className="mb-3">
-            <Form.Control type="text" value={item.title} onChange={(e) => handleInfoChange(e, index, 'title')} required placeholder="Title" />
-            <Form.Control type="text" value={item.description} onChange={(e) => handleInfoChange(e, index, 'description')} required placeholder="Description" />
+            <Form.Control
+              type="text"
+              value={item.title}
+              onChange={(e) => handleInfoChange(e, index, "title")}
+              required
+              placeholder="Title"
+            />
+            <Form.Control
+              type="text"
+              value={item.description}
+              onChange={(e) => handleInfoChange(e, index, "description")}
+              required
+              placeholder="Description"
+            />
           </div>
         ))}
         <Button variant="secondary" onClick={handleAddInfo}>
@@ -100,7 +104,7 @@ export function CreateDoor() {
         <Form.Label>Image:</Form.Label>
         <Form.Control type="file" onChange={(e) => setImg(e.target.files[0])} />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" disabled={loading}>
         Submit
       </Button>
     </Form>

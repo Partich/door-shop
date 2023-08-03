@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import "./css/AuthPage.css";
 import { useHttp } from "../hooks/http.hook";
 import { useNavigate, NavLink } from "react-router-dom";
@@ -18,10 +18,9 @@ export const RegistrationPage = () => {
       await request("/user/registration", "POST", {
         ...form,
       });
-      navigate('/auth');
+      navigate("/auth");
     } catch (e) {}
   };
-
 
   return (
     <div className="authBlock">
@@ -46,7 +45,9 @@ export const RegistrationPage = () => {
         <button className="btn btn-success mt-3" onClick={registerHandler} disabled={loading}>
           Зарегистрироваться
         </button>
-        <span>Есть акунт? <NavLink to="/auth">Вход</NavLink></span>
+        <span>
+          Есть акунт? <NavLink to="/auth">Вход</NavLink>
+        </span>
       </form>
     </div>
   );

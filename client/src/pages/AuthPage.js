@@ -1,4 +1,4 @@
-import React, { useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import "./css/AuthPage.css";
 import { useHttp } from "../hooks/http.hook";
 import { AuthContext } from "../context/AuthContext";
@@ -17,9 +17,10 @@ export const AuthPage = () => {
   const loginHandler = async (e) => {
     try {
       e.preventDefault();
-      const data = await request("/user/login", "POST", { ...form });
-      auth.login(data.token);
-      navigate('/catalog');
+      await request("/user/login", "POST", { ...form }).then((data) => {
+        auth.login(data.token);
+      });
+      navigate("/catalog");
     } catch (e) {}
   };
 
@@ -27,7 +28,7 @@ export const AuthPage = () => {
     <div className="authBlock">
       <h1>Авторизация</h1>
       <form>
-      <input
+        <input
           className="form-control mt-4"
           placeholder="Email"
           id="email"
@@ -46,7 +47,9 @@ export const AuthPage = () => {
         <button className="btn btn-success mt-3" onClick={loginHandler} disabled={loading}>
           Войти
         </button>
-        <span>Нет акунта? <NavLink to="/registration">Регистрация</NavLink></span>
+        <span>
+          Нет акунта? <NavLink to="/registration">Регистрация</NavLink>
+        </span>
       </form>
     </div>
   );

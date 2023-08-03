@@ -1,16 +1,15 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import {AuthContext} from '../context/AuthContext'
+import { AuthContext } from "../context/AuthContext";
 
 export const Header = () => {
-
-    const navigate = useNavigate();
-    const auth = useContext(AuthContext)
-    const logoutHandler = event => {
-      event.preventDefault()
-      auth.logout()
-      navigate('/auth');
-    }
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+  const logoutHandler = (event) => {
+    event.preventDefault();
+    auth.logout();
+    navigate("/auth");
+  };
 
   return (
     <nav className="navbar navbar-expand-sm bg-light">
@@ -38,16 +37,11 @@ export const Header = () => {
             </NavLink>
           </li>
           <li>
-          {auth.isAuthenticated ? (
-              <NavLink
-                to="/auth"
-                className="nav-link"
-                role="button"
-                onClick={logoutHandler}
-              >
+            {auth.isAuthenticated ? (
+              <NavLink to="/auth" className="nav-link" role="button" onClick={logoutHandler}>
                 Выйти
               </NavLink>
-             ) : (
+            ) : (
               <NavLink to="/auth" className="nav-link">
                 Войти
               </NavLink>

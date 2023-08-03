@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import './css/DoorPage.css';
+import React, { useEffect, useState } from "react";
+import "./css/DoorPage.css";
+import { useHttp } from "../hooks/http.hook";
 export function DoorPage({ id }) {
   const [door, setDoor] = useState({});
+  const { request } = useHttp();
 
   useEffect(() => {
     async function fetchDoor() {
-      const response = await fetch(`/door/${id}`);
-      const data = await response.json();
-      setDoor(data);
+      await request(`/door/${id}`).then((data) => {
+        setDoor(data);
+      });
     }
     fetchDoor();
-  }, [id]);
+  }, [id, request]);
 
   return (
     <div className="door-container">

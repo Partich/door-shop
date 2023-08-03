@@ -27,7 +27,7 @@ export function DoorList({ typeId }) {
 
     fetchTotalRecords();
     fetchDoors();
-  }, [typeId, currentPage]);
+  }, [typeId, currentPage, request]);
 
   useEffect(() => {
     setTotalPages(Math.ceil(totalRecords / limit));

@@ -9,6 +9,7 @@ import { CartPage } from "./pages/CartPage";
 import { DoorPage } from "./components/DoorPage";
 import { CreateDoor } from "./components/CreateDoor";
 import { CreateType } from "./components/CreateType";
+import { CreatePage } from "./components/CreatePage";
 
 export const useRouts = (isAuth) => {
 
@@ -25,6 +26,7 @@ export const useRouts = (isAuth) => {
         <Route path="cart" element={<CartPage />} />
         <Route path="createDoor" element={<CreateDoor />} />
         <Route path="createType" element={<CreateType />} />
+        <Route path="createPage" element={<CreatePage />} />
         <Route path="*" element={<Error />} />
       </Routes>
     );

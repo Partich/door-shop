@@ -8,13 +8,13 @@ class DoorController {
   async create(req, res, next) {
     try {
       console.log(req.body)
-      let { name, price, brandId, typeId, info } = req.body;
+      let { name, price, typeId, info } = req.body;
       const { img } = req.files;
       let fileName = v4() + ".jpg";
       const __dirname = path.dirname(fileURLToPath(import.meta.url));
       img.mv(path.join(__dirname, '..', 'static', fileName));
       
-      const door = await Door.create({ name, price, brandId, typeId, img: fileName });
+      const door = await Door.create({ name, price, typeId, img: fileName });
 
       if (info) {
         console.log(info)

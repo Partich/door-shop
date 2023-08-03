@@ -27,13 +27,8 @@ export const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/createDoor" className="nav-link">
-              СоздатьДверь
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/createType" className="nav-link">
-              СоздатьТип
+            <NavLink to="/createPage" className="nav-link">
+              Создать
             </NavLink>
           </li>
           <li>
